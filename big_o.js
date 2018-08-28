@@ -156,6 +156,9 @@ function isPrime(n) {
   return true;
 }
 
+/******** Recursive ********/
+
+
 ////Counting Sheep
 // Linear
 // O(n)
@@ -369,10 +372,139 @@ let organization = {
 };
 
   function traverse(organization, depth) {
-    let indentation = ' '.repeat(depth * 4)
+    let indentation = ' '.repeat(depth * 4);
     Object.keys(organization).forEach(key => {
-      console.log(indentation + key)
-      traverse(organization[key], depth + 1)
-    })  
+      console.log(indentation + key);
+      traverse(organization[key], depth + 1);
+    });
 }
-traverse(organization, 1)
+traverse(organization, 1);
+
+/******** Iterative ********/
+
+
+////1. Counting sheep
+// Linear
+// O(n)
+
+function sheep(num){
+  for(let i = num; i > 0; i--){
+    console.log(`${i} - Another sheep jump over the fence`);
+  }
+}
+
+
+////2. Array Double
+// Linear
+// O(n)
+function arrayDouble(arr){
+  let outputArr = [];
+  for(let i = 0; i < arr.length; i++){
+    outputArr.push(arr[i]*2);
+  }
+  return outputArr;
+}
+
+
+////3. Reverse String
+// Linear
+// O(n)
+
+function reverseString(string){
+  let inputString = string.split('');
+  let outputString = '';
+  for(let i = 0; i < string.length; i++){
+    outputString += (inputString.pop());
+  }
+  return outputString;
+}
+
+
+////4. nth Triangle Number
+// Linear
+// O(n)
+
+function nthNumber(n){
+  let res = 0;
+  for(let i = 1; i <= n; i++){
+    res += i;
+  }
+  return res;
+}
+
+
+////5. String Splitter
+// Linear
+// O(n)
+
+function stringSplitter(string, separator) {
+  let currWord = '';
+  let splitArr =[];
+
+  for(let i = 0; i < string.length; i++){
+    if(string[i] === separator){
+      splitArr.push(currWord);
+      currWord = '';
+    }else{
+      currWord += string[i];
+    }
+  }
+  splitArr.push(currWord);
+
+  return splitArr;
+}
+
+
+////6. Binary Representation
+// Logarithmic
+// O(logn)
+
+function convertToBinaryIter(num){
+  var binary = '';
+  while(num>0){
+      let rem = Math.floor(num%2);
+      binary = rem + binary;
+      num = Math.floor(num/2);
+  }
+  return binary;
+}
+console.log(convertToBinaryIter(124)); //1111100
+
+
+////7. Factorial
+// Linear
+// O(n)
+
+function factorial2(num){
+  let results = 1;
+  for(let i = 1; i <= num; i++){
+    results = results * i;
+  }
+  return results;
+}
+
+////8. Fibonacci
+// Linear
+// O(n)
+
+function fibonacci(n) {
+  let curNum;
+  let fibSequence = [1,1];
+  
+  if(n === 1){
+    return [1];
+  }
+  if(n === 2){
+    return fibSequence;
+  }
+
+  for(let i = 3; i <= n; i++){
+    curNum = fibSequence[i-2] + fibSequence[i-3];
+    fibSequence.push(curNum);
+  }
+
+  return curNum;
+  // return fibSequence;
+}
+
+
